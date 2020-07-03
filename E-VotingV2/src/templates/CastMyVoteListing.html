@@ -1,0 +1,42 @@
+{% extends "Super.html" %}
+{% block content %}
+<h2>Cast My Vote</h2>
+<div class="text-left m-5">
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Election Name</th>
+      <th scope="col">Constituency Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in cerecords %}
+        <tr>
+            <td>{{ row.electionModel.electionName }}</td>
+            <td>{{ row.constituencyModel.constituencyName }}</td>
+            
+            <td>
+                <a href="/CastMyVoteOperation?electionID={{row.electionID}}&constituencyID={{row.constituencyID}}" class="btn btn-outline-info btn-sm ">Cast my Vote</a>
+                
+            </td>
+        </tr>
+    {% endfor %}
+    {% if cerecords | length == 0 %}
+        <tr>
+            <td colspan='4' class="text-info text-center">No Election is Available today</td>
+            
+        </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+<hr/>
+
+
+
+
+
+</div>
+    {% endblock %}

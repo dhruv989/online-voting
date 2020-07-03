@@ -1,0 +1,65 @@
+{% extends "Super.html" %}
+{% block content %}
+<h2>Election Nomination to Be Filed</h2>
+<div class="text-left m-5">
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Election Name</th>
+      <th scope="col">Nomination Last Date</th>
+      <th scope="col">Eff Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in records %}
+        <tr>
+            <td>{{ row.electionName }}</td>
+            <td>{{ row.nominationLastDate }}</td>
+            <td>{{ row.effDate }}</td>
+            <td>
+                <a href="/ElectionNominationOperation?operation=File&electionID={{row.electionID}}" class="btn btn-outline-info btn-sm ">File Nomination</a>
+                
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr/>
+
+<h2>Election Nomination Already Filed</h2>
+<div class="text-left m-5">
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Election Name</th>
+      <th scope="col">Contestant Name</th>
+      <th scope="col">Constituency Name</th>
+      <th scope="col">Political Party Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in cerecords %}
+        <tr>
+            <td>{{ row.electionModel.electionName }}</td>
+            <td>{{ row.contestantModel.firstName}}</td>
+            
+            <td>{{ row.constituencyModel.constituencyName}}</td>
+            <td>{{ row.politicalPartyModel.politicalPartyName}}</td>
+            <td>
+                <a href="/ElectionNominationOperation?operation=Withdraw&uniqueID={{row.uniqueID}}" class="btn btn-outline-info btn-sm ">Withdraw Nomination</a>
+                
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+    {% endblock %}

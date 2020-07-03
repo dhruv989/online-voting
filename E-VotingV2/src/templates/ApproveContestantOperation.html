@@ -1,0 +1,120 @@
+{% extends "Super.html" %}
+<h2>Contestant Approval Operation</h2>
+{% block content %}
+    <h2>Approve Voter</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessApproveContestantOperation" enctype="multipart/form-data">
+    <input type="hidden" name="unqid" value="{{row.contestantID}}"/>
+      
+        
+        
+      <div class="form-group row">
+        <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-3">
+         <input type="text" readonly class="form-control" name="title" id="title" value="{{row.title}}" >
+          <input type="text" readonly class="form-control" name="firstName" id="firstName" value="{{row.firstName}}" >
+        </div>
+        <label for="middleName" class="col-sm-3 col-form-label">Middle Name</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="middleName" id="middleName" value="{{row.middleName}}" >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control"  name="lastName" id="lastName" value="{{row.lastName}}" >
+        </div>
+        
+      </div>
+      
+        
+        <div class="form-group row">
+        <label for="wardNumber" class="col-sm-3 col-form-label">Ward Number</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="wardNumber" id="wardNumber" value="{{row.wardNumber}}" >
+        </div>
+        <label for="streetName" class="col-sm-3 col-form-label">Street Name</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="streetName" id="streetName" value="{{row.streetName}}" >
+        </div>
+      </div>
+        
+        
+        <div class="form-group row">
+        <label for="area" class="col-sm-3 col-form-label">Area</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="area" id="area" value="{{row.area}}" >
+        </div>
+        <label for="city" class="col-sm-3 col-form-label">City</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="city" id="city" value="{{row.city}}" >
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <label for="district" class="col-sm-3 col-form-label">District</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="district" id="district" value="{{row.district}}" >
+        </div>
+        <label for="state" class="col-sm-3 col-form-label">State</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="state" id="state" value="{{row.state}}" >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="dob" class="col-sm-3 col-form-label">Date of Birth</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="dob" id="dob" value="{{row.dob}}" >
+        </div>
+        <label for="nricNumber" class="col-sm-3 col-form-label">NRIC Number</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="nricNumber" id="nricNumber" value="{{row.ssn}}" >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="mobileNumber" class="col-sm-3 col-form-label">Mobile Number</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="mobileNumber" id="mobileNumber" value="{{row.mobileNbr}}" >
+        </div>
+        <label for="emailId" class="col-sm-3 col-form-label">Email ID</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" name="emailID" id="emailID" value="{{row.emailID}}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="addressProof" class="col-sm-3 col-form-label">Address Proof</label>
+        <div class="col-sm-3">
+          <a href="{{'/static/UPLOADED_FILES/Contestant/'+row.addressProof}} " >Download Address Proof</a>
+        </div>
+        <label for="ageProof" class="col-sm-3 col-form-label">Age Proof</label>
+        <div class="col-sm-3">
+          <a href="{{ '/static/UPLOADED_FILES/Contestant/'+row.ageProof}}" >>Download Age Proof</a>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="constituency" class="col-sm-3 col-form-label">Constituency</label>
+        <div class="col-sm-9">
+            <select readonly class="form-control"  name="constituency"  disabled >
+            {% for cons in constituencies %}
+                <option {{'selected' if constituencyID == cons.constituencyID }} value="{{cons.constituencyID}}">{{cons.constituencyName}}</option>
+            
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="isApproved" class="col-sm-3 col-form-label">Is Approved</label>
+        <div class="col-sm-3">
+          <input type="checkbox"  class=""  name="isApproved" id="isApproved"  >
+        </div>
+        
+      </div>
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">Approve</button>
+            <a href="/ApproveVoterListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

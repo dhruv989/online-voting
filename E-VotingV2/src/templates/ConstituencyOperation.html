@@ -1,0 +1,28 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>{{operation}}  </h2>
+    <form id="frm" name="frm" method="post" action="/ProcessConstituencyOperation">
+    
+        <input type="hidden" name="operation" value="{{operation}}"/>
+        <input type="hidden" name="unqid" value="{{row.constituencyID}}"/>
+        
+      <div class="form-group row">
+        <label for="constituencyName" class="col-sm-2 col-form-label">Constituency Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="constituencyName" id="constituencyName" placeholder="Constituency Name" value="{{row.constituencyName}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="state" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="state" id="state" placeholder="State" value="{{row.state}}" required>
+        </div>
+      </div>
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/Dashboard" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

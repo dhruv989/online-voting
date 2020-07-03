@@ -1,0 +1,43 @@
+{% extends "Super.html" %}
+<h2>Voter Approval Operation</h2>
+{% block content %}
+    <h2>File Nomination</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessElectionNominationOperation" enctype="multipart/form-data">
+    <input type="hidden" name="operation" value="{{operation}}"/>
+    <input type="hidden" name="electionID" value="{{electionObject.electionID}}"/>
+    <input type="hidden" name="uniqueID" value="{{uniqueID}}"/>
+
+        <div class="form-group row">
+        <label for="electionName" class="col-sm-3 col-form-label">Election Name</label>
+        <div class="col-sm-4">
+            {{electionObject.electionName}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="constituencyID" class="col-sm-3 col-form-label">Constituency</label>
+        <div class="col-sm-4">
+            <select  class="form-control"  name="constituencyID"  {{'disabled' if operation == 'Withdraw'}} >
+            {% for cons in constituencies %}
+                <option value="{{cons.constituencyID}}">{{cons.constituencyName}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="politicalPartyID" class="col-sm-3 col-form-label">Political Party</label>
+        <div class="col-sm-4">
+            <select  class="form-control"  name="politicalPartyID"   {{'disabled' if operation == 'Withdraw'}} >
+            {% for pp in politicalpartiesList %}
+                <option value="{{pp.politicalPartyID}}">{{pp.politicalPartyName}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}} Nomination</button>
+            <a href="/ElectionNominationListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

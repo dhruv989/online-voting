@@ -1,0 +1,65 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>{{operation}}  Role</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessRoleOperation">
+    
+        <input type="hidden" name="operation" value="{{operation}}"/>
+        <input type="hidden" name="unqid" value="{{row.RoleID}}"/>
+        
+      <div class="form-group row">
+        <label for="RoleName" class="col-sm-3 col-form-label">Role Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="RoleName" id="RoleName" placeholder="Role Name" value="{{row.RoleName}}" required>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="CanPoliticalParty" class="col-sm-3 col-form-label">Can Political Party</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanPoliticalParty" id="CanPoliticalParty" {{'checked' if row.CanPoliticalParty == 1}}  >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="CanVideoData" class="col-sm-3 col-form-label">Can Vote</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanVote" id="CanVote" {{'checked' if row.CanVote == 1}}  >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="CanBlockchainGeneration" class="col-sm-3 col-form-label">Can Blockchain Generation</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanBlockChainGeneration" id="CanBlockChainGeneration" {{'checked' if row.CanBlockChainGeneration == 1}} >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="Author" class="col-sm-3 col-form-label">Can Blockchain Report</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanBlockChainReport" id="CanBlockChainReport" {{'checked' if row.CanBlockChainReport == 1}}  >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="Author" class="col-sm-3 col-form-label">Can Role</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanRole" id="CanRole" {{'checked' if row.CanRole == 1}}  >
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="Author" class="col-sm-3 col-form-label">Can User</label>
+        <div class="col-sm-9">
+          <input type="checkbox" class="" {{'readonly' if operation == 'Delete'}} name="CanUser" id="CanUser" {{'checked' if row.CanUser == 1}} >
+        </div>
+      </div>
+      
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/RoleListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

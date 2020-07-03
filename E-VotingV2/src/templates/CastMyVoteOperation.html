@@ -1,0 +1,39 @@
+{% extends "Super.html" %}
+<h2>Voter Approval Operation</h2>
+{% block content %}
+    <h2>Cast My Vote</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessCastMyVoteOperation" enctype="multipart/form-data">
+    <input type="hidden" name="operation" value="{{operation}}"/>
+    <input type="hidden" name="electionID" value="{{electionObject.electionID}}"/>
+    <input type="hidden" name="constituencyID" value="{{constituencyObject.constituencyID}}"/>
+
+        <div class="form-group row">
+        <label for="electionName" class="col-sm-3 col-form-label">Election Name</label>
+        <div class="col-sm-4">
+            {{electionObject.electionName}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="constituencyID" class="col-sm-3 col-form-label">Constituency</label>
+        <div class="col-sm-4">
+            {{constituencyObject.constituencyName}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="politicalPartyID" class="col-sm-3 col-form-label">Select a Contestant</label>
+        <div class="col-sm-4">
+            <select  class="form-control"  name="contestantID"  >
+            {% for opt in contestantsList %}
+                <option value="{{opt.contestantID}}">{{opt.firstName}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">Cast My Vote</button>
+            <a href="/ElectionNominationListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

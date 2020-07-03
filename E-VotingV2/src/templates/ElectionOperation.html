@@ -1,0 +1,34 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>{{operation}}  </h2>
+    <form id="frm" name="frm" method="post" action="/ProcessElectionOperation">
+    
+        <input type="hidden" name="operation" value="{{operation}}"/>
+        <input type="hidden" name="unqid" value="{{row.electionID}}"/>
+        
+      <div class="form-group row">
+        <label for="electionName" class="col-sm-2 col-form-label">Election Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="electionName" id="electionName" placeholder="Election Name" value="{{row.electionName}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="nominationLastDate" class="col-sm-2 col-form-label">Nomination Last Date</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" {{'readonly' if operation == 'Delete'}} name="nominationLastDate" id="nominationLastDate" placeholder="Nomination Last Date" value="row.nominationLastDate}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="effDate" class="col-sm-2 col-form-label">Eff Date</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" {{'readonly' if operation == 'Delete'}} name="effDate" id="effDate" placeholder="Election Date" value="{{row.effDate}}" required>
+        </div>
+      </div>
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/ElectionListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

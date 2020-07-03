@@ -1,0 +1,42 @@
+{% extends "Super.html" %}
+{% block content %}
+    <form action="/PoliticalPartyListing">
+      <div class="form-group row">
+        <label for="searchData" class="col-sm-2 col-form-label">Election Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="searchData" name="searchData" placeholder="" value="{{ searchData }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Submit" />
+        </div>
+      </div>
+    </form>
+<div class="text-left m-5"><a href="/ElectionOperation?operation=Create" class="btn btn-outline-info btn-sm ">Create</a></div>
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Election Name</th>
+      <th scope="col">Nomination Last Date</th>
+      <th scope="col">Eff Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in records %}
+        <tr>
+            <td>{{ row.electionName }}</td>
+            <td>{{ row.nominationLastDate }}</td>
+            <td>{{ row.effDate }}</td>
+            <td>
+                <a href="/ElectionOperation?operation=Edit&unqid={{row.electionID}}" class="btn btn-outline-info btn-sm ">Edit</a>
+                <a href="/ElectionOperation?operation=Delete&unqid={{row.electionID}}" class="btn btn-outline-warning btn-sm ">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="text-center"><a href="/ElectionOperation?operation=Create" class="btn btn-outline-info btn-sm ">Create</a></div>
+{% endblock %}

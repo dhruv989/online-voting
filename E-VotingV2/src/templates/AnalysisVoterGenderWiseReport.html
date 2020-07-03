@@ -1,0 +1,49 @@
+{% extends "Super.html" %}
+
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'No of Votes'],
+          {% for row in records %}
+            ['{{ row[0] }}',     {{ row[1] }}],
+          {% endfor %}
+        ]);
+
+        var options = {
+            is3D: true,
+          title: 'Analysis Voter Gender Wise'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <h2>Analysis Voter Gender Wise</h2>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">Gender</th>
+              <th scope="col">No Of Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for row in records %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                    </tr>
+                {% endfor %}
+            
+          </tbody>
+        </table>
+    
+{% endblock %}

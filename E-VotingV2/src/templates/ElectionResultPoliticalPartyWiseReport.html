@@ -1,0 +1,68 @@
+{% extends "Super.html" %}
+
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Political Party', 'No of Wins'],
+          {% for key in ppwise %}
+            ['{{ key }}',     {{ ppwise[key] }}],
+          {% endfor %}
+        ]);
+
+        var options = {
+            is3D: true,
+          title: 'Election Result Political Party Wise'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <h2>Election Result Political Party Wise</h2>
+    
+    <form action="/ElectionResultPoliticalPartyWise">
+      <div class="form-group row">
+        <label for="electionID" class="col-sm-3 col-form-label">Election</label>
+        <div class="col-sm-9">
+            <select class="form-control"  name="electionID" >
+            {% for elec in elections %}
+                <option {{'selected' if electionID | int == elec.electionID}} value="{{elec.electionID}}">{{elec.electionName}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Submit" />
+        </div>
+      </div>
+    </form>
+    {% if ppwise | length > 0 %}
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">Age</th>
+              <th scope="col">No Of Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for key in ppwise %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ ppwise[key] }}</td>
+                    </tr>
+                {% endfor %}
+            
+          </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

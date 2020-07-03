@@ -1,0 +1,29 @@
+{% extends "Super.html" %}
+{% block content %}
+
+<h2>Contestant Listing for Approval</h2>
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">First Name</th>
+      <th scope="col">Middle Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in records %}
+        <tr>
+            <td>{{ row.firstName }}</td>
+            <td>{{ row.middleName }}</td>
+            <td>{{ row.lastName }}</td>
+            <td>
+                <a href="/ApproveContestantOperation?operation=Edit&unqid={{row.contestantID}}" class="btn btn-outline-info btn-sm ">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

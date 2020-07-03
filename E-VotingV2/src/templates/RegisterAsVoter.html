@@ -1,0 +1,127 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>Register as Voter</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessRegisterAsVoter" enctype="multipart/form-data">
+    
+      
+        
+        
+      <div class="form-group row">
+        <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-3">
+         <input type="text" class="form-control" name="title" id="title" value="" required>
+          <input type="text" class="form-control" name="firstName" id="firstName" value="" required>
+        </div>
+        <label for="middleName" class="col-sm-3 col-form-label">Middle Name</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="middleName" id="middleName" value="" required>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control"  name="lastName" id="lastName" value="" required>
+        </div>
+        <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+        <div class="col-sm-3">
+          <select class="form-control"  name="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+      </div>
+      
+        
+        <div class="form-group row">
+        <label for="wardNumber" class="col-sm-3 col-form-label">Ward Number</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="wardNumber" id="wardNumber" value="" required>
+        </div>
+        <label for="streetName" class="col-sm-3 col-form-label">Street Name</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="streetName" id="streetName" value="" required>
+        </div>
+      </div>
+        
+        
+        <div class="form-group row">
+        <label for="area" class="col-sm-3 col-form-label">Area</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="area" id="area" value="" required>
+        </div>
+        <label for="city" class="col-sm-3 col-form-label">City</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="city" id="city" value="" required>
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <label for="district" class="col-sm-3 col-form-label">District</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="district" id="district" value="" required>
+        </div>
+        <label for="state" class="col-sm-3 col-form-label">State</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="state" id="state" value="" required>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="dob" class="col-sm-3 col-form-label">Date of Birth</label>
+        <div class="col-sm-3">
+          <input type="date" class="form-control" name="dob" id="dob" value="" required>
+        </div>
+        <label for="nricNumber" class="col-sm-3 col-form-label">NRIC Number</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="nricNumber" id="nricNumber" value="" required>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="mobileNumber" class="col-sm-3 col-form-label">Mobile Number</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" value="" required>
+        </div>
+        <label for="emailId" class="col-sm-3 col-form-label">Email ID</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="emailID" id="emailID" value="" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="addressProof" class="col-sm-3 col-form-label">Address Proof</label>
+        <div class="col-sm-3">
+          <input type="file" class="form-control" name="addressProof" id="addressProof" value="" required>
+        </div>
+        <label for="ageProof" class="col-sm-3 col-form-label">Age Proof</label>
+        <div class="col-sm-3">
+          <input type="file" class="form-control" name="ageProof" id="ageProof" value="" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="constituency" class="col-sm-3 col-form-label">Constituency</label>
+        <div class="col-sm-9">
+            <select class="form-control"  name="constituency" {{'disabled' if operation == 'Delete'}}>
+            {% for cons in constituencies %}
+                <option value="{{cons.constituencyID}}">{{cons.constituencyName}}</option>
+            
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="Password" class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-3">
+          <input type="password" class="form-control"  name="password" id="password" value="" required>
+        </div>
+        
+      </div>
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">Register</button>
+            <a href="/" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

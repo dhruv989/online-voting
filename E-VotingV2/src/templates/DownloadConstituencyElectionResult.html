@@ -1,0 +1,30 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>Download Constituency Election Result</h2>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">Election Name</th>
+              <th scope="col">Constituency Name</th>
+              <th scope="col">Contestant Name</th>
+              <th scope="col">No Of Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for row in records %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                       
+                        
+                    </tr>
+                {% endfor %}
+            
+          </tbody>
+        </table>
+    
+{% endblock %}

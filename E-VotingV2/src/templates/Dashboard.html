@@ -1,0 +1,49 @@
+{% extends "Super.html" %}
+
+{% block content %}
+    <h2>{{dashboardMsg}}</h2>
+    {% if globalRoleObject.isVoter %}
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">First Name</th>
+              <th scope="col">Middle Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Is Approved</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr>
+                    <td>{{vmodel.firstName}}</td>
+                    <td>{{vmodel.middleName}}</td>
+                    <td>{{vmodel.lastName}}</td>
+                    <td>{{vmodel.isApproved}}</td>
+                </tr>
+            
+          </tbody>
+        </table>
+    {% endif %}
+    {% if globalRoleObject.isContestant %}
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">First Name</th>
+              <th scope="col">Middle Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Is Approved</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr>
+                    <td>{{cmodel.firstName}}</td>
+                    <td>{{cmodel.middleName}}</td>
+                    <td>{{cmodel.lastName}}</td>
+                    <td>{{cmodel.isApproved}}</td>
+                </tr>
+            
+          </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
